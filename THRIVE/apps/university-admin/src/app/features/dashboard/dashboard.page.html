@@ -1,0 +1,88 @@
+<header class="page-heading dashboard-heading">
+  <div>
+    <h1>{{ language.copy().dashboard.title }}</h1>
+    <p>{{ language.copy().dashboard.introduction }}</p>
+  </div>
+  <button
+    type="button"
+    class="secondary refresh-action"
+    data-testid="dashboard-refresh"
+    [disabled]="state.busy()"
+    (click)="load()"
+  >
+    <app-thrive-icon kind="refresh" />
+    {{ language.copy().common.refresh }}
+  </button>
+</header>
+
+<app-request-feedback [state]="state" (retry)="load()" />
+@if (report(); as data) {
+  @if (state.error()) {
+    <p class="muted">{{ language.copy().dashboard.staleNotice }}</p>
+  }
+  <section
+    class="directory-section"
+    aria-labelledby="directory-heading"
+    [attr.aria-busy]="state.busy()"
+  >
+    <h2 id="directory-heading">{{ language.copy().dashboard.operationsTitle }}</h2>
+    <div class="operations-grid">
+      <a class="panel operation-card" routerLink="/services" data-testid="services-action">
+        <span class="operation-icon"><app-thrive-icon kind="services" /></span>
+        <div class="operation-summary">
+          <strong data-testid="service-count">{{ data.availableServicesCount }}</strong>
+          <span>{{ language.copy().dashboard.services }}</span>
+        </div>
+        <span class="operation-link"
+          ><span>{{ language.copy().dashboard.heroAction }}</span
+          ><app-thrive-icon kind="arrow"
+        /></span>
+      </a>
+      <a
+        class="panel operation-card resources-card"
+        routerLink="/resources"
+        data-testid="resources-action"
+      >
+        <span class="operation-icon"><app-thrive-icon kind="resources" /></span>
+        <div class="operation-summary">
+          <strong data-testid="resource-count">{{ data.availableResourcesCount }}</strong>
+          <span>{{ language.copy().dashboard.resources }}</span>
+        </div>
+        <span class="operation-link"
+          ><span>{{ language.copy().dashboard.resourceAction }}</span
+          ><app-thrive-icon kind="arrow"
+        /></span>
+      </a>
+    </div>
+  </section>
+
+  <section
+    class="privacy-section panel"
+    data-testid="privacy-metrics"
+    aria-labelledby="privacy-heading"
+  >
+    <div class="privacy-heading">
+      <span class="privacy-icon"><app-thrive-icon kind="shield" /></span>
+      <div>
+        <h2 id="privacy-heading">{{ language.copy().dashboard.privacyMetricsTitle }}</h2>
+        <p>{{ language.copy().dashboard.privacyMetricsIntro }}</p>
+      </div>
+    </div>
+    <div class="metric-grid" data-testid="aggregate-report">
+      @for (metric of sensitiveMetrics(data); track metric.label) {
+        <article class="metric">
+          <h3>{{ metric.label }}</h3>
+          <strong [class.suppressed]="metric.value === null">{{
+            metric.value === null ? language.copy().dashboard.suppressed : metric.value
+          }}</strong>
+        </article>
+      }
+    </div>
+    <p class="privacy-note">
+      {{ language.copy().dashboard.suppression }}
+      <span>{{ language.copy().dashboard.minCell }}: {{ data.minCellSize }}</span>
+    </p>
+  </section>
+} @else if (state.busy()) {
+  <div class="loading-space" aria-hidden="true"></div>
+}

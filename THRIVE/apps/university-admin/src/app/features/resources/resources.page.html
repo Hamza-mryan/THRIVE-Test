@@ -1,0 +1,381 @@
+<header class="page-heading feature-heading">
+  <span class="heading-icon"><app-thrive-icon kind="resources" /></span>
+  <div>
+    <h1>{{ language.copy().resources.title }}</h1>
+    <p>{{ language.copy().resources.introduction }}</p>
+  </div>
+</header>
+<div class="toolbar">
+  <button
+    class="primary"
+    type="button"
+    data-testid="resource-add"
+    (click)="edit(undefined, $event)"
+    [disabled]="state.busy()"
+  >
+    {{ language.copy().common.add }}</button
+  ><button class="secondary" type="button" (click)="load()" [disabled]="state.busy()">
+    {{ language.copy().common.refresh }}
+  </button>
+</div>
+<app-request-feedback [state]="state" (retry)="load()" />
+@if (saved()) {
+  <p class="notice success" role="status">{{ language.copy().common.saved }}</p>
+}
+@if (editing()) {
+  <form
+    class="panel editor"
+    #form="ngForm"
+    (ngSubmit)="form.valid && save()"
+    data-testid="resource-form"
+  >
+    <header class="editor-heading">
+      <h2 #editorHeading tabindex="-1">{{ language.copy().resources.editor }}</h2>
+      <p class="muted">{{ language.copy().editor.requiredHint }}</p>
+    </header>
+    <fieldset [disabled]="state.busy()">
+      <fieldset class="editor-group">
+        <legend>{{ language.copy().editor.details }}</legend>
+        <div class="field-grid">
+          <div class="form-field">
+            <label
+              ><span
+                >{{ language.copy().resources.slug
+                }}<span class="required-mark" aria-hidden="true">*</span></span
+              ><input
+                #slug="ngModel"
+                [attr.aria-invalid]="
+                  slug.invalid && (slug.touched || form.submitted) ? 'true' : null
+                "
+                [attr.aria-describedby]="
+                  slug.invalid && (slug.touched || form.submitted) ? 'resources-slug-error' : null
+                "
+                name="slug"
+                required
+                pattern="[a-z0-9]+(-[a-z0-9]+)*"
+                maxlength="100"
+                [(ngModel)]="draft.slug"
+            /></label>
+            <app-field-feedback
+              id="resources-slug-error"
+              [errors]="slug.errors"
+              [show]="slug.invalid && (slug.touched || form.submitted)"
+            />
+          </div>
+          <div class="form-field">
+            <label
+              ><span
+                >{{ language.copy().resources.category
+                }}<span class="required-mark" aria-hidden="true">*</span></span
+              ><input
+                #category="ngModel"
+                [attr.aria-invalid]="
+                  category.invalid && (category.touched || form.submitted) ? 'true' : null
+                "
+                [attr.aria-describedby]="
+                  category.invalid && (category.touched || form.submitted)
+                    ? 'resources-category-error'
+                    : null
+                "
+                name="category"
+                required
+                [(ngModel)]="draft.category"
+            /></label>
+            <app-field-feedback
+              id="resources-category-error"
+              [errors]="category.errors"
+              [show]="category.invalid && (category.touched || form.submitted)"
+            />
+          </div>
+          <div class="form-field">
+            <label
+              ><span
+                >{{ language.copy().resources.titleAr
+                }}<span class="required-mark" aria-hidden="true">*</span></span
+              ><input
+                #titleAr="ngModel"
+                [attr.aria-invalid]="
+                  titleAr.invalid && (titleAr.touched || form.submitted) ? 'true' : null
+                "
+                [attr.aria-describedby]="
+                  titleAr.invalid && (titleAr.touched || form.submitted)
+                    ? 'resources-titleAr-error'
+                    : null
+                "
+                name="titleAr"
+                lang="ar"
+                dir="rtl"
+                required
+                [(ngModel)]="draft.titleAr"
+            /></label>
+            <app-field-feedback
+              id="resources-titleAr-error"
+              [errors]="titleAr.errors"
+              [show]="titleAr.invalid && (titleAr.touched || form.submitted)"
+            />
+          </div>
+          <div class="form-field">
+            <label
+              ><span
+                >{{ language.copy().resources.titleEn
+                }}<span class="required-mark" aria-hidden="true">*</span></span
+              ><input
+                #titleEn="ngModel"
+                [attr.aria-invalid]="
+                  titleEn.invalid && (titleEn.touched || form.submitted) ? 'true' : null
+                "
+                [attr.aria-describedby]="
+                  titleEn.invalid && (titleEn.touched || form.submitted)
+                    ? 'resources-titleEn-error'
+                    : null
+                "
+                name="titleEn"
+                lang="en"
+                dir="ltr"
+                required
+                [(ngModel)]="draft.titleEn"
+            /></label>
+            <app-field-feedback
+              id="resources-titleEn-error"
+              [errors]="titleEn.errors"
+              [show]="titleEn.invalid && (titleEn.touched || form.submitted)"
+            />
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="editor-group">
+        <legend>{{ language.copy().editor.content }}</legend>
+        <div class="field-grid">
+          <div class="form-field">
+            <label
+              ><span
+                >{{ language.copy().resources.summaryAr
+                }}<span class="required-mark" aria-hidden="true">*</span></span
+              ><textarea
+                #summaryAr="ngModel"
+                [attr.aria-invalid]="
+                  summaryAr.invalid && (summaryAr.touched || form.submitted) ? 'true' : null
+                "
+                [attr.aria-describedby]="
+                  summaryAr.invalid && (summaryAr.touched || form.submitted)
+                    ? 'resources-summaryAr-error'
+                    : null
+                "
+                name="summaryAr"
+                lang="ar"
+                dir="rtl"
+                required
+                [(ngModel)]="draft.summaryAr"
+              ></textarea>
+            </label>
+            <app-field-feedback
+              id="resources-summaryAr-error"
+              [errors]="summaryAr.errors"
+              [show]="summaryAr.invalid && (summaryAr.touched || form.submitted)"
+            />
+          </div>
+          <div class="form-field">
+            <label
+              ><span
+                >{{ language.copy().resources.summaryEn
+                }}<span class="required-mark" aria-hidden="true">*</span></span
+              ><textarea
+                #summaryEn="ngModel"
+                [attr.aria-invalid]="
+                  summaryEn.invalid && (summaryEn.touched || form.submitted) ? 'true' : null
+                "
+                [attr.aria-describedby]="
+                  summaryEn.invalid && (summaryEn.touched || form.submitted)
+                    ? 'resources-summaryEn-error'
+                    : null
+                "
+                name="summaryEn"
+                lang="en"
+                dir="ltr"
+                required
+                [(ngModel)]="draft.summaryEn"
+              ></textarea>
+            </label>
+            <app-field-feedback
+              id="resources-summaryEn-error"
+              [errors]="summaryEn.errors"
+              [show]="summaryEn.invalid && (summaryEn.touched || form.submitted)"
+            />
+          </div>
+          <div class="form-field">
+            <label
+              ><span
+                >{{ language.copy().resources.bodyAr
+                }}<span class="required-mark" aria-hidden="true">*</span></span
+              ><textarea
+                #bodyAr="ngModel"
+                [attr.aria-invalid]="
+                  bodyAr.invalid && (bodyAr.touched || form.submitted) ? 'true' : null
+                "
+                [attr.aria-describedby]="
+                  bodyAr.invalid && (bodyAr.touched || form.submitted)
+                    ? 'resources-bodyAr-error'
+                    : null
+                "
+                class="body-input"
+                name="bodyAr"
+                lang="ar"
+                dir="rtl"
+                required
+                [(ngModel)]="draft.bodyAr"
+              ></textarea>
+            </label>
+            <app-field-feedback
+              id="resources-bodyAr-error"
+              [errors]="bodyAr.errors"
+              [show]="bodyAr.invalid && (bodyAr.touched || form.submitted)"
+            />
+          </div>
+          <div class="form-field">
+            <label
+              ><span
+                >{{ language.copy().resources.bodyEn
+                }}<span class="required-mark" aria-hidden="true">*</span></span
+              ><textarea
+                #bodyEn="ngModel"
+                [attr.aria-invalid]="
+                  bodyEn.invalid && (bodyEn.touched || form.submitted) ? 'true' : null
+                "
+                [attr.aria-describedby]="
+                  bodyEn.invalid && (bodyEn.touched || form.submitted)
+                    ? 'resources-bodyEn-error'
+                    : null
+                "
+                class="body-input"
+                name="bodyEn"
+                lang="en"
+                dir="ltr"
+                required
+                [(ngModel)]="draft.bodyEn"
+              ></textarea>
+            </label>
+            <app-field-feedback
+              id="resources-bodyEn-error"
+              [errors]="bodyEn.errors"
+              [show]="bodyEn.invalid && (bodyEn.touched || form.submitted)"
+            />
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="editor-group">
+        <legend>{{ language.copy().editor.publication }}</legend>
+        <div class="field-grid">
+          <div class="form-field">
+            <label
+              ><span
+                >{{ language.copy().common.source
+                }}<span class="required-mark" aria-hidden="true">*</span></span
+              ><input
+                #source="ngModel"
+                [attr.aria-invalid]="
+                  source.invalid && (source.touched || form.submitted) ? 'true' : null
+                "
+                [attr.aria-describedby]="
+                  source.invalid && (source.touched || form.submitted)
+                    ? 'resources-source-error'
+                    : null
+                "
+                name="source"
+                required
+                [(ngModel)]="draft.source"
+            /></label>
+            <app-field-feedback
+              id="resources-source-error"
+              [errors]="source.errors"
+              [show]="source.invalid && (source.touched || form.submitted)"
+            />
+          </div>
+          <div class="form-field">
+            <label
+              ><span
+                >{{ language.copy().common.version
+                }}<span class="required-mark" aria-hidden="true">*</span></span
+              ><input
+                #version="ngModel"
+                [attr.aria-invalid]="
+                  version.invalid && (version.touched || form.submitted) ? 'true' : null
+                "
+                [attr.aria-describedby]="
+                  version.invalid && (version.touched || form.submitted)
+                    ? 'resources-version-error'
+                    : null
+                "
+                name="version"
+                required
+                [(ngModel)]="draft.version"
+            /></label>
+            <app-field-feedback
+              id="resources-version-error"
+              [errors]="version.errors"
+              [show]="version.invalid && (version.touched || form.submitted)"
+            />
+          </div>
+          <label class="check"
+            ><input name="published" type="checkbox" [(ngModel)]="draft.published" />{{
+              language.copy().resources.published
+            }}</label
+          >
+        </div>
+      </fieldset>
+      <p class="muted">{{ language.copy().resources.review }}</p>
+      @if ((form.dirty || form.submitted) && form.invalid) {
+        <p class="notice error" role="status">{{ language.copy().editor.invalid }}</p>
+      }
+      <div class="toolbar editor-actions">
+        <button
+          type="submit"
+          class="primary"
+          data-testid="resource-save"
+          [disabled]="form.invalid || state.busy()"
+        >
+          {{ language.copy().common.save }}
+        </button>
+        <button type="button" class="secondary" data-testid="editor-cancel" (click)="cancel()">
+          {{ language.copy().common.cancel }}
+        </button>
+      </div>
+    </fieldset>
+  </form>
+}
+<div class="card-grid">
+  @for (resource of resources(); track resource.id) {
+    <article class="panel record-card">
+      <div class="tags">
+        @if (resource.isDemo) {
+          <span class="tag">{{ language.copy().common.demo }}</span>
+        }
+        <span class="tag">{{
+          resource.published ? language.copy().common.published : language.copy().common.draft
+        }}</span>
+      </div>
+      <h2>{{ language.locale() === 'ar' ? resource.titleAr : resource.titleEn }}</h2>
+      <p>{{ language.locale() === 'ar' ? resource.summaryAr : resource.summaryEn }}</p>
+      <dl class="record-meta">
+        <dt>{{ language.copy().common.source }}</dt>
+        <dd>{{ resource.source }}</dd>
+        <dt>{{ language.copy().common.version }}</dt>
+        <dd>{{ resource.version }}</dd>
+      </dl>
+      <button
+        class="secondary"
+        type="button"
+        (click)="edit(resource, $event)"
+        [disabled]="state.busy()"
+      >
+        {{ language.copy().common.edit }}
+      </button>
+    </article>
+  } @empty {
+    @if (!state.busy() && !state.error()) {
+      <div class="panel empty-state">
+        <app-thrive-icon kind="resources" />
+        <p>{{ language.copy().common.empty }}</p>
+      </div>
+    }
+  }
+</div>

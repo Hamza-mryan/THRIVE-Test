@@ -1,0 +1,82 @@
+<header class="page-heading feature-heading">
+  <span class="heading-icon"><app-thrive-icon kind="referrals" /></span>
+  <div>
+    <h1>{{ language.copy().referrals.title }}</h1>
+    <p>{{ language.copy().referrals.introduction }}</p>
+  </div>
+</header>
+<p class="notice">{{ language.copy().referrals.privacy }}</p>
+<div class="toolbar">
+  <button class="secondary" type="button" (click)="load()" [disabled]="state.busy()">
+    {{ language.copy().common.refresh }}
+  </button>
+</div>
+<app-request-feedback [state]="state" (retry)="load()" />
+@if (saved()) {
+  <p class="notice success" role="status">{{ language.copy().common.saved }}</p>
+}
+<div
+  class="panel table-scroll"
+  tabindex="0"
+  role="region"
+  [attr.aria-label]="language.copy().referrals.title"
+>
+  <table>
+    <caption class="sr-only">
+      {{
+        language.copy().referrals.introduction
+      }}
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">{{ language.copy().referrals.service }}</th>
+        <th scope="col">{{ language.copy().common.status }}</th>
+        <th scope="col">{{ language.copy().referrals.created }}</th>
+        <th scope="col">{{ language.copy().common.actions }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (referral of referrals(); track referral.id) {
+        <tr>
+          <td>
+            <strong>{{
+              language.locale() === 'ar' ? referral.serviceNameAr : referral.serviceNameEn
+            }}</strong>
+            @if (referral.isDemo) {
+              <small class="tag">{{ language.copy().common.demo }}</small>
+            }
+          </td>
+          <td>{{ language.copy().referrals.statuses[referral.status] }}</td>
+          <td>{{ referral.createdAtUtc | date: 'mediumDate' }}</td>
+          <td>
+            @if (transitions(referral.status).length) {
+              <select
+                [attr.data-testid]="'referral-status-' + referral.id"
+                [attr.aria-label]="language.copy().referrals.update"
+                [disabled]="state.busy()"
+                (change)="update(referral, $event)"
+              >
+                <option value="">{{ language.copy().referrals.update }}</option>
+                @for (status of transitions(referral.status); track status) {
+                  <option [value]="status">
+                    {{ language.copy().referrals.statuses[status] }}
+                  </option>
+                }
+              </select>
+            } @else {
+              <span class="muted">{{ language.copy().referrals.terminal }}</span>
+            }
+          </td>
+        </tr>
+      } @empty {
+        @if (!state.error()) {
+          <tr>
+            <td colspan="4">
+              {{ state.busy() ? language.copy().common.loading : language.copy().common.empty }}
+            </td>
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>

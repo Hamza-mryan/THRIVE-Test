@@ -1,0 +1,50 @@
+# Generated reference extraction is local review material, not application source.
+/reference-review/
+
+# Local secrets and environment overrides.
+**/.env
+**/.env.local
+**/.env.*.local
+**/appsettings.Local.json
+**/appsettings.Development.local.json
+**/.env.*
+!**/.env.example
+**/*.user
+**/*.suo
+**/*.pfx
+**/*.p12
+**/*.pem
+**/*.key
+**/*.jks
+**/*.keystore
+
+# Build output and dependencies.
+**/bin/
+**/obj/
+**/node_modules/
+**/.angular/
+**/dist/
+**/.dart_tool/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/build/
+**/coverage/
+**/TestResults/
+**/test-results/
+**/playwright-report/
+**/.gradle/
+**/local.properties
+**/Pods/
+**/.symlinks/
+**/ephemeral/
+
+# Local-only output and databases.
+/THRIVE/.local/
+/THRIVE/output/
+**/*.log
+**/*.db
+**/*.db-shm
+**/*.db-wal
+**/*.dump
+**/*.backup
+**/.DS_Store

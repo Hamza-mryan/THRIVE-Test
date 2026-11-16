@@ -1,0 +1,104 @@
+name: THRIVE checks
+
+on:
+  push:
+    paths: ["THRIVE/**", ".github/workflows/thrive-ci.yml", ".editorconfig"]
+  pull_request:
+    paths: ["THRIVE/**", ".github/workflows/thrive-ci.yml", ".editorconfig"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: thrive-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_DB: thrive_test
+          POSTGRES_USER: thrive_test_local
+          POSTGRES_PASSWORD: ci-ephemeral-only
+        ports: ["55432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U thrive_test_local -d thrive_test"
+          --health-interval 5s --health-timeout 3s --health-retries 10
+    env:
+      ConnectionStrings__Thrive: Host=localhost;Port=55432;Database=thrive_test;Username=thrive_test_local;Password=ci-ephemeral-only
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://localhost:5280
+      DevelopmentIdentity__Enabled: "true"
+    defaults:
+      run:
+        working-directory: THRIVE/services/backend
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6
+        with:
+          global-json-file: THRIVE/services/backend/global.json
+      - run: dotnet restore --locked-mode
+      - run: dotnet format --verify-no-changes --no-restore
+      - run: dotnet build --configuration Release --no-restore
+      - run: dotnet test --configuration Release --no-build
+      - run: dotnet tool restore
+      - run: dotnet ef database update --project src/Thrive.Infrastructure --startup-project src/Thrive.Api --configuration Release --no-build
+      - name: Verify the connected development API against PostgreSQL
+        shell: bash
+        run: |
+          dotnet run --no-build --configuration Release --project src/Thrive.Api --no-launch-profile > "$RUNNER_TEMP/thrive-api.log" 2>&1 &
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://localhost:5280/health/ready > /dev/null; then break; fi
+            sleep 1
+          done
+          node ../../scripts/verify-development.mjs
+
+  student:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: THRIVE/apps/student-mobile
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Install pinned Flutter SDK
+        shell: bash
+        run: |
+          flutter_version="$(tr -d '\r\n' < .flutter-version)"
+          git clone --depth 1 --branch "$flutter_version" https://github.com/flutter/flutter.git "$RUNNER_TEMP/flutter"
+          echo "$RUNNER_TEMP/flutter/bin" >> "$GITHUB_PATH"
+      - run: flutter --version
+      - run: flutter pub get --enforce-lockfile
+      - run: flutter gen-l10n
+      - run: dart format --output=none --set-exit-if-changed lib test
+      - run: flutter analyze
+      - run: flutter test
+      - run: flutter build web --release
+
+  university:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: THRIVE/apps/university-admin
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: THRIVE/apps/university-admin/package-lock.json
+      - run: npm ci
+      - run: npm run build
+      - run: npm test

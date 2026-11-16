@@ -1,0 +1,99 @@
+<div class="workspace" [attr.dir]="language.direction()" [attr.lang]="language.locale()">
+  <a class="skip-link" href="#main-content" (click)="focusContent($event)">{{
+    language.copy().skip
+  }}</a>
+  <aside class="sidebar" [attr.aria-label]="language.copy().navigation">
+    <a routerLink="/dashboard" class="brand" aria-label="THRIVE Test"
+      ><img
+        class="brand-mark"
+        src="favicon.svg"
+        alt=""
+        aria-hidden="true"
+        width="44"
+        height="44"
+      /><span
+        ><strong>THRIVE Test</strong><small>{{ language.copy().universitySpace }}</small></span
+      ></a
+    >
+    <div class="sidebar-caption">{{ language.copy().workspace }}</div>
+    @if (api.signedIn()) {
+      <nav>
+        @for (item of navigation; track item.path) {
+          <a [routerLink]="item.path" routerLinkActive="active" ariaCurrentWhenActive="page"
+            ><app-thrive-icon class="nav-symbol" [kind]="item.icon" />
+            <span>{{ language.copy().nav[item.label] }}</span></a
+          >
+        }
+      </nav>
+    }
+    <div class="sidebar-note">
+      <app-thrive-icon class="note-symbol" kind="shield" />
+      <strong>{{ language.copy().privacyTitle }}</strong>
+      <p>{{ language.copy().privacyText }}</p>
+    </div>
+    <div class="sidebar-footer">Check in. Reach out. Thrive.</div>
+  </aside>
+  <div class="content-column">
+    <header class="topbar">
+      <span class="topbar-label">{{ language.copy().universitySpace }}</span>
+      <div class="topbar-actions">
+        @if (api.user()?.isDevelopmentIdentity) {
+          <span class="environment"
+            ><span aria-hidden="true"></span>{{ language.copy().foundation }}</span
+          >
+        }
+        <button
+          type="button"
+          class="language-button"
+          (click)="language.toggle()"
+          [attr.aria-label]="language.copy().switchLanguage"
+        >
+          {{ language.copy().languageButton }}
+        </button>
+        @if (api.signedIn()) {
+          <button type="button" class="secondary" data-testid="sign-out" (click)="api.signOut()">
+            {{ language.copy().auth.signOut }}
+          </button>
+        }
+      </div>
+    </header>
+    <main id="main-content" #mainContent tabindex="-1">
+      @if (api.signedIn()) {
+        <router-outlet />
+      } @else {
+        <section class="login-panel panel">
+          <img
+            class="login-mark"
+            src="favicon.svg"
+            alt=""
+            aria-hidden="true"
+            width="56"
+            height="56"
+          />
+          <h1>{{ language.copy().auth.title }}</h1>
+          @if (api.sessionExpired()) {
+            <p class="notice error" role="alert">{{ language.copy().errors.unauthorized }}</p>
+          }
+          <p>{{ language.copy().auth.body }}</p>
+          <p class="notice">{{ language.copy().auth.notice }}</p>
+          <button
+            type="button"
+            class="primary"
+            data-testid="dev-login"
+            [disabled]="!api.developmentEnabled || login.busy()"
+            (click)="signIn()"
+          >
+            {{ language.copy().auth.demo }}
+          </button>
+          @if (!api.developmentEnabled) {
+            <p>{{ language.copy().auth.pending }}</p>
+          }
+          <app-request-feedback [state]="login" (retry)="signIn()" />
+        </section>
+      }
+    </main>
+    <footer class="page-footer">
+      <span>THRIVE Test</span><span>{{ language.copy().footer }}</span>
+    </footer>
+  </div>
+</div>

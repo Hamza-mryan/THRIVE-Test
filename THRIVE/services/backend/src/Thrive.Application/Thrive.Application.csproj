@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="../Thrive.Domain/Thrive.Domain.csproj" />
+  </ItemGroup>
+</Project>

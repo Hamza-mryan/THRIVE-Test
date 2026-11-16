@@ -1,0 +1,312 @@
+{
+  "@@locale": "en",
+  "brandTagline": "Check in. Reach out. Thrive.",
+  "welcomeEyebrow": "A little space for you",
+  "welcomeTitle": "Your next step\ntowards feeling better.",
+  "welcomeBody": "Understand how you feel, explore helpful resources, and find your way to human support — at your pace.",
+  "heroEyebrow": "GROW AT YOUR OWN PACE",
+  "heroTitle": "Small steps.\nMore possibilities.",
+  "benefitCheckTitle": "Make room for a check-in",
+  "benefitCheckBody": "A clear starting point to understand your support needs.",
+  "benefitConnectTitle": "Find the right support",
+  "benefitConnectBody": "Resources and verified university services in one place.",
+  "benefitChoiceTitle": "Your choices matter",
+  "benefitChoiceBody": "Research participation is optional and separate from service use.",
+  "developmentSignIn": "Explore with a development account",
+  "universitySignIn": "Continue with your university",
+  "connecting": "Connecting…",
+  "developmentNotice": "Development preview · synthetic account · not a live student service",
+  "identityPending": "University sign-in will be available when your university connection is ready.",
+  "screeningBoundary": "THRIVE supports screening and referral. It does not provide diagnosis, treatment, or continuous monitoring.",
+  "urgentHelp": "Need urgent help? Reach out now",
+  "consentEyebrow": "Your choice, clearly explained",
+  "consentTitle": "Before we begin.",
+  "consentIntro": "Take a moment to read how the service works. Research participation is always a separate choice.",
+  "serviceConsentTitle": "Using the service",
+  "serviceConsentLabel": "I have read and agree to use the service under this policy.",
+  "researchConsentTitle": "Research participation · optional",
+  "researchConsentLabel": "I separately agree to research participation under this policy.",
+  "researchOptional": "You can leave research unchecked and continue using the service. This preview policy is for development review only.",
+  "saveAndContinue": "Save my choices and continue",
+  "saving": "Saving your choices…",
+  "policyVersion": "Policy version: {version}",
+  "@policyVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "homeEyebrow": "One step at a time",
+  "homeTitle": "Welcome to your space.",
+  "homeBody": "A place to check in, learn, and reach out when you need support.",
+  "homeBannerTitle": "You don’t have to figure it out alone.",
+  "homeBannerBody": "Find a starting point that feels right for you. Seeking support is always your choice.",
+  "modulesTitle": "Your pathways to support",
+  "checkTitle": "THRIVE Check",
+  "checkBody": "A guided self-check to help understand your support needs.",
+  "guideTitle": "THRIVE Guide",
+  "guideBody": "Practical resources for everyday balance and wellbeing.",
+  "connectTitle": "THRIVE Connect",
+  "connectBody": "Find support through verified university services.",
+  "plusTitle": "THRIVE Plus",
+  "plusBody": "Explore pathways to verified specialist support.",
+  "modulePending": "Coming in the next development stages",
+  "historyTitle": "Your check-in history",
+  "historyEmpty": "No check-ins yet. Your history will appear here once the screening pathway is available.",
+  "developmentHomeNotice": "Connected development preview: labeled demonstrations and services use synthetic data and do not deliver a live clinical service.",
+  "signOut": "Sign out",
+  "safetyTitle": "You deserve support now.",
+  "safetyIntro": "If you feel unsafe or need immediate support, contact local emergency services or seek in-person help nearby.",
+  "safetyTrustedTitle": "Reach out to someone you trust",
+  "safetyTrustedBody": "Let a trusted person know that you need support, and move to a safe place if you can.",
+  "safetyContactsUnavailable": "Verified university contact details are not available in this preview. Do not rely on this app for an emergency response.",
+  "safetyBoundary": "THRIVE is not an emergency service and does not monitor you continuously.",
+  "close": "Close",
+  "connectionError": "We couldn’t connect. Check your connection and try again. Your choices have not been confirmed saved.",
+  "sessionError": "Your session is unavailable or expired. Sign out and start again.",
+  "policyChangedError": "The policy has changed. Sign out and start again to read the current version.",
+  "validationError": "We couldn’t save these choices. Review your selections and try again.",
+  "serviceError": "The service is unavailable right now. Please try again shortly.",
+  "loading": "Loading…",
+  "retry": "Try again",
+  "refresh": "Refresh",
+  "actionError": "We could not complete this action. Check your connection, refresh, and try again.",
+  "demoCheckNotice": "This is a usability demonstration only. The response total is technical and has no psychological or diagnostic meaning.",
+  "clinicalToolsPending": "Clinical instruments such as HADS and PSS remain disabled until licensing and institution approval are complete.",
+  "noInstruments": "No instrument is enabled",
+  "startCheck": "Start demonstration",
+  "demoLabel": "Demo · synthetic data",
+  "questionProgress": "Question {current} of {total}",
+  "previous": "Previous",
+  "next": "Next",
+  "submitCheck": "Submit and view result",
+  "answersSavedOnServer": "Each answer is saved when the server confirms it. Resume this session from your history.",
+  "pauseCheck": "Pause and resume later",
+  "resultTitle": "Demonstration complete",
+  "technicalTotal": "Technical total: {score} of {max}",
+  "ruleVersion": "Rule version: {version}",
+  "noHistory": "Your history starts here",
+  "noHistoryBody": "Start a session from THRIVE Check. Your progress and demonstration results will appear here.",
+  "completed": "Completed",
+  "inProgress": "In progress",
+  "viewResult": "View result",
+  "resumeCheck": "Resume session",
+  "offlineGuides": "Showing your saved offline copies. Check content versions when you reconnect.",
+  "searchGuides": "Search resources",
+  "allCategories": "All categories",
+  "savedGuidesOnly": "Saved resources only",
+  "noResources": "No matching resources",
+  "noResourcesBody": "Try another search or clear your filters. Only published resources are shown.",
+  "readResource": "Read resource",
+  "demoResourceNotice": "Development content explaining how to use the app. It is not treatment or approved clinical guidance.",
+  "resourceSource": "Source: {source}",
+  "reviewPending": "No approved clinical review is recorded for this content.",
+  "reviewDate": "Reviewed: {date}",
+  "contentVersion": "Content version: {version}",
+  "removeDownload": "Remove saved copy",
+  "downloadGuide": "Save for offline reading",
+  "directoryIntro": "Choose a service and review its details before requesting support. Sharing minimum necessary information requires your consent.",
+  "noServices": "No service is currently available",
+  "noServicesBody": "Verified services will appear when enabled by the university. Urgent help remains available.",
+  "verifiedService": "Verified service",
+  "serviceDetails": "Service details",
+  "demoServiceNotice": "This is a simulated service for testing referrals inside the system. Requests do not reach a healthcare provider or book real appointments.",
+  "serviceHours": "Opening hours",
+  "serviceLocation": "Location",
+  "bookingMethod": "Request and booking process",
+  "shareReferralConsent": "I consent to sharing the minimum necessary information with this referral service.",
+  "requestReferral": "Request referral",
+  "referralSent": "Your referral request was created. Track it in My referrals; creation does not mean completion or a confirmed appointment.",
+  "referralAlreadyOpen": "You already have an open request for this service. Check My referrals before sending another.",
+  "referralRequestBoundary": "Referral status is updated by authorized staff. Decisions remain with you and the qualified professional.",
+  "myReferrals": "My referrals",
+  "noReferrals": "No referral requests yet",
+  "noReferralsBody": "Explore support options through THRIVE Connect or THRIVE Plus.",
+  "cancelReferral": "Cancel request",
+  "cancelReferralConfirm": "Cancel this request? You can create another request later.",
+  "keepReferral": "Keep request",
+  "referralRequested": "Requested",
+  "referralReceived": "Received",
+  "referralScheduled": "Scheduled",
+  "referralCompleted": "Completed",
+  "referralDeclined": "Declined",
+  "referralCancelled": "Cancelled",
+  "accountTitle": "My account and choices",
+  "consentSettings": "Consent settings",
+  "withdrawConsent": "Withdraw service consent",
+  "withdrawConsentConfirm": "Withdrawal stops access to service features and withdraws research consent too. Decision records remain under the applicable retention policy.",
+  "confirmWithdraw": "Confirm withdrawal",
+  "accountPrivacy": "Your current session is memory-only. Answers, results and sign-in tokens are not stored on your device. You may explicitly save published resources for offline reading.",
+  "navHome": "Home",
+  "navHistory": "History",
+  "navGuide": "Guide",
+  "navReferrals": "Referrals",
+  "navAccount": "Account",
+  "openPath": "Open pathway",
+  "historyReadyBody": "Open History to view completed sessions or resume a saved session.",
+  "@questionProgress": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "@technicalTotal": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "@ruleVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "@resourceSource": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  },
+  "@reviewDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "@contentVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "openSavedGuides": "Read saved resources offline",
+  "openNamedPath": "Open {title}",
+  "@openNamedPath": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "privacyPolicy": "Privacy policy",
+  "termsOfUse": "Terms of use",
+  "policyDraftNotice": "Development information, not an approved launch policy. The university must approve the final text before collecting real student data.",
+  "dataCollectedTitle": "What data does the app use?",
+  "dataCollectedBody": "The server uses account and university identifiers, consent decisions and policy version, session answers and results, and referral records. Daily feeling entries are optional. Downloaded resources do not require personal notes.",
+  "dataPurposeTitle": "Why is this data used?",
+  "dataPurposeBody": "To provide the service, save progress and history, track support requests, enforce access rights, and audit operations. Research participation is separate and refusing it does not block service. Daily feelings are not used to calculate diagnosis or risk.",
+  "dataSharingTitle": "Access and sharing",
+  "dataSharingBody": "Student records are scoped to their identity and university. Administration shows directories, referral status, and aggregates without individual answers. Referrals require separate sharing consent. The current preview does not deliver referrals to external providers.",
+  "dataChoicesTitle": "Your choices and retention",
+  "dataChoicesBody": "You can change research consent, withdraw service consent, and remove today's feeling. Withdrawal does not automatically delete prior records. Retention periods, deletion requests, and the official contact await university policy. Tokens, answers, and results are not stored locally; only published public resources can be downloaded.",
+  "serviceScopeTitle": "Service limits",
+  "serviceScopeBody": "THRIVE supports screening, referral, and education. It does not diagnose, treat, provide emergency response, or continuously monitor users. Medical decisions remain with licensed professionals. Help remains accessible without completing a questionnaire.",
+  "demoUseTitle": "Using the development preview",
+  "demoUseBody": "Accounts, questions, and services labeled demo test the product. They do not produce a real psychological result or confirm a care appointment. Resource sources, versions, and review status are displayed explicitly.",
+  "contactPolicyTitle": "Official information and help",
+  "contactPolicyBody": "University services, professionals, and help contacts become operational only after verification and approval. Help is always accessible. Check the displayed contact status and do not rely on the preview for emergency response.",
+  "humanSupportTitle": "Reach human support",
+  "humanSupportBody": "If you want additional support, explore university counseling or specialist services. The decision remains with you and a professional; these links do not depend on the demonstration total.",
+  "activityTitle": "Your activity",
+  "activityCompleted": "Completed sessions",
+  "activityOpenReferrals": "Open support requests",
+  "dailyMoodTitle": "How do you feel today? Optional",
+  "dailyMoodNotice": "A personal entry you can change or remove. It is not screening, diagnosis, or a risk assessment and does not affect access to support.",
+  "moodVeryLow": "Very difficult",
+  "moodLow": "Difficult",
+  "moodNeutral": "Neutral",
+  "moodGood": "Good",
+  "moodVeryGood": "Very good",
+  "removeTodayMood": "Remove today's entry",
+  "moodWeekTitle": "Your feelings over the past seven days",
+  "moodNotRecorded": "Not recorded",
+  "emergencyContactTitle": "Contact emergency services",
+  "emergencyContactPending": "An approved emergency contact is not configured in this preview. A call action cannot be offered until the service and number are verified.",
+  "universityHelpTitle": "University support and human assistance",
+  "universityHelpPending": "The university support channel and response hours await verification. No team monitors this preview or receives an emergency request from it.",
+  "verificationRequired": "Requires verification",
+  "safePlaceTitle": "Move to a safe place",
+  "safePlaceBody": "If possible, move to a safe place and ask someone you trust to stay with you until you receive direct help.",
+  "activitySubtitle": "Your saved steps, all in one place.",
+  "moodChartTitle": "Your feelings over time",
+  "moodChartSubtitle": "Your own check-ins, without judgement or clinical interpretation.",
+  "moodChartRecorded": "{count} of {total} days recorded",
+  "moodChartLegend": "Recorded feeling",
+  "moodChartGapNotice": "The 1–5 scale reflects your own choice. Gaps are unrecorded days, not zero values.",
+  "moodChartEmptyTitle": "Your first point starts with you",
+  "moodChartEmptyBody": "If you wish, record your feeling today to see it here. Earlier days stay empty.",
+  "chartSevenDays": "7 days",
+  "chartThirtyDays": "30 days",
+  "historyOverview": "Your journey so far",
+  "historyOverviewBody": "Saved sessions you can return to at any time.",
+  "historySessionCount": "{count} saved sessions",
+  "directoryAllSpecialties": "All",
+  "specialtyPsychology": "Psychology",
+  "specialtyPsychiatry": "Psychiatry",
+  "specialtyGeneral": "General support",
+  "serviceSource": "Directory source",
+  "serviceSourceMissing": "No verified source has been added",
+  "serviceUnverified": "Unverified directory entry",
+  "servicePhone": "Call",
+  "serviceEmail": "Email",
+  "serviceWebsite": "Provider website",
+  "serviceContactUnavailable": "This contact method could not be opened on this device",
+  "serviceContactBoundary": "Contact opens another app and does not automatically share screening results.",
+  "directorySpecialistIntro": "Choose a support specialty and review the service before requesting a referral.",
+  "serviceRequestTitle": "Your next step",
+  "serviceBookingInternal": "In-app referral request",
+  "guideEyebrow": "A little space for yourself",
+  "topicStress": "Stress",
+  "topicExams": "Exam worries",
+  "topicSleep": "Sleep & rest",
+  "topicTime": "Time planning",
+  "topicBreathing": "Gentle breathing",
+  "topicGrounding": "Grounding",
+  "topicProduct": "Using THRIVE",
+  "draftEducationNotice": "Educational drafts based on public sources, pending university specialist review. These are not treatment or clinically approved materials.",
+  "openOriginalSource": "Original source",
+  "@moodChartRecorded": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "@historySessionCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "breathingPracticeTitle": "A space to breathe",
+  "breathingPracticeBody": "Follow the rhythm if comfortable, or stop whenever you like.",
+  "breatheIn": "Breathe in gently",
+  "breatheOut": "Breathe out gently",
+  "startPractice": "Start practice",
+  "pausePractice": "Pause",
+  "resetPractice": "Reset",
+  "practiceReady": "At your own pace",
+  "practiceComplete": "Time complete. Take your time.",
+  "resumeJourneyTitle": "Pick up where you left off",
+  "pastSessionsTitle": "Your previous check-ins",
+  "accountIntro": "Your space. Your choices.",
+  "referralsIntro": "Keep track of your support requests and the next step."
+}
