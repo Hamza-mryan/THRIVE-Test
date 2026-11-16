@@ -4,7 +4,7 @@
 
 **لا تعتبر النسخة جاهزة للعرض على الجهاز الثاني قبل تشغيلها عليه فعليًا.** المستودع يحتوي مصدر المشروع وتعليماته؛ ليس برنامج تثبيت أو تطبيقًا يعمل بالنقر مرتين. لا يتضمن SDKs أو قاعدة البيانات أو التبعيات المحملة. يلزم اتصال بالإنترنت لاستعادة الحزم عند أول إعداد.
 
-نزّل المستودع باستخدام Git أو خيار **Code → Download ZIP** في GitHub ثم فك الضغط. افتح PowerShell داخل مجلد `THRIVE` الموجود تحت جذر المستودع، وليس في المجلد الأب. Git مطلوب للاستنساخ فقط؛ تنزيل ZIP بديل لنقل المصدر.
+نزّل المستودع باستخدام Git أو خيار **Code → Download ZIP** في GitHub ثم فك الضغط. افتح PowerShell داخل مجلد `THRIVE` الموجود تحت جذر المستودع، وليس في المجلد الأب. تنزيل ZIP بديل لاستنساخ المصدر؛ يلزم تثبيت Git for Windows أيضًا لتشغيل أدوات Flutter.
 
 ## طريقة العرض المقترحة
 
@@ -15,6 +15,7 @@
 ## المتطلبات
 
 - Windows بنظام 64 بت، ومتصفح Edge أو Chrome حديث. يلزم التحقق من توافق إصدار Windows الفعلي مع الأدوات؛ اسم Windows 10 أو11 وحده لا يثبت الجاهزية.
+- [Git for Windows](https://gitforwindows.org/) متاح ضمن PATH، لاستخدام أدوات Flutter واستنساخ المصدر عند اختياره.
 - [.NET SDK](https://learn.microsoft.com/en-us/dotnet/core/install/windows) بالإصدار المثبت في `services/backend/global.json`: حاليًا 10.0.403 أو patch يقبله ذلك الملف. Runtime وحده لا يكفي للبناء وأول migration.
 - [Node.js](https://nodejs.org/en/download) بإصدار يطابق `apps/university-admin/package.json`: حاليًا `^22.22.3 || ^24.15.0 || >=26.0.0`، مع npm.
 - [Flutter SDK](https://docs.flutter.dev/install) بالإصدار المثبت في `apps/student-mobile/.flutter-version`: حاليًا 3.47.9.
